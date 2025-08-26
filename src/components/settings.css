@@ -1,0 +1,60 @@
+.settingsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #090909;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.numberOfWinnersInput {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: 0.1s ease-in-out;
+  outline: none;
+  background-color: #696969;
+  color: whitesmoke;
+  width: 152px;
+}
+
+.numberOfWinnersInput::placeholder {
+  color: #191919;
+}
+
+.numberOfWinnersInput:focus {
+  box-shadow: 0 0 6px rgba(180, 180, 180, 0.6);
+  outline: none;
+}
+
+.button-styled {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  padding: 12px 24px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 200px;
+}
+
+.button-styled:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.button-styled:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button-styled:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
+}

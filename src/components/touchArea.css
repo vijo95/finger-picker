@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(25, 25, 25, 1);
+}
+
+.countDownOverlay {
+  position: absolute;
+  font-size: 10rem;
+  color: whitesmoke;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+
+  animation: countDown 0.5s infinite ease-in-out alternate;
+}
+
+@keyframes countDown {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
