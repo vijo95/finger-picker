@@ -77,10 +77,10 @@ export default function App(): JSX.Element {
           key={id}
           style={{
             position: "absolute",
-            left: point.x - 25,
-            top: point.y - 25,
-            width: 50,
-            height: 50,
+            left: point.x - 35,
+            top: point.y - 35,
+            width: 70,
+            height: 70,
             borderRadius: "50%",
             background: "rgba(0, 150, 255, 0.4)",
             border: "2px solid rgba(0, 150, 255, 0.8)",
