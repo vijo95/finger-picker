@@ -33,14 +33,7 @@ export const TouchArea: FC<{ numberOfWinners: number }> = ({
     setWinners(selectedWinners);
     setShowTimer(false);
     setCountdownOver(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    touches.size,
-    numberOfWinners,
-    setWinners,
-    setShowTimer,
-    setCountdownOver,
-  ]);
+  }, [touches, numberOfWinners, setWinners, setShowTimer, setCountdownOver]);
 
   useEffect(() => {
     if (numberOfWinners <= touches.size) {
