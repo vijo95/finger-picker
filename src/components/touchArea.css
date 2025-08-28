@@ -1,9 +1,10 @@
 .container {
-  display: flex;
+  touch-action: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(25, 25, 25, 1);
+  position: relative;
   overflow: hidden;
+  background-color: black;
 }
 
 .countDownOverlay {
