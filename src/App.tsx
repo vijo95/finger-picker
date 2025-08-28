@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, type JSX } from "react";
-import { TouchArea } from "./components/touchArea";
-import { Settings } from "./components/settings";
+import { TouchArea } from "./components/touchArea/touchArea";
+import { Settings } from "./components/settings/settings";
 
 export default function App(): JSX.Element {
   const [numberOfWinners, setNumberOfWinners] = useState(1);

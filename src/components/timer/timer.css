@@ -1,0 +1,21 @@
+.timer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 7rem;
+  color: whitesmoke;
+  user-select: none;
+
+  animation: pulse 0.5s infinite ease-in-out alternate;
+
+  transform: translate(-50%, -50%) scale(0.75);
+}
+
+@keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(0.75);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+}

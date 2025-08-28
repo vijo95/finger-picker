@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 interface Point {
   x: number;
   y: number;
+  id: number;
 }
 
 export const useTouch = ({
@@ -17,12 +18,11 @@ export const useTouch = ({
     if (!el) return;
 
     const onPointerDown = (e: PointerEvent) => {
-      console.log("ASD");
       e.preventDefault();
       el.setPointerCapture?.(e.pointerId);
       setTouches((prev) => {
         const next = new Map(prev);
-        next.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        next.set(e.pointerId, { x: e.clientX, y: e.clientY, id: e.pointerId });
         return next;
       });
     };
@@ -33,7 +33,7 @@ export const useTouch = ({
       setTouches((prev) => {
         if (!prev.has(e.pointerId)) return prev;
         const next = new Map(prev);
-        next.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        next.set(e.pointerId, { x: e.clientX, y: e.clientY, id: e.pointerId });
         return next;
       });
     };
