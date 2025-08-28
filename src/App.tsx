@@ -14,7 +14,10 @@ export default function App(): JSX.Element {
           setNumberOfWinners={setNumberOfWinners}
         />
       ) : (
-        <TouchArea numberOfWinners={numberOfWinners} />
+        <TouchArea
+          numberOfWinners={numberOfWinners}
+          setGameStarted={setGameStarted}
+        />
       )}
     </>
   );

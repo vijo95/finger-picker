@@ -4,10 +4,15 @@ import { TouchPoint } from "../touchPoint/touchPoint";
 import { useTouch, type Point } from "../../hooks/useTouch";
 import CountdownTimer from "../timer/timer";
 
-export const TouchArea: FC<{ numberOfWinners: number }> = ({
+export const TouchArea: FC<{
+  numberOfWinners: number;
+  setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({
   numberOfWinners,
+  setGameStarted,
 }: {
   numberOfWinners: number;
+  setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { touches } = useTouch({ wrapperRef });
@@ -60,6 +65,25 @@ export const TouchArea: FC<{ numberOfWinners: number }> = ({
 
       {showTimer && !countdownOver ? (
         <CountdownTimer initialSeconds={3} onComplete={timesUp} />
+      ) : null}
+      {countdownOver ? (
+        <div className="restartContainer">
+          <button
+            className="buttonStyled"
+            onClick={() => {
+              setWinners([]);
+              setCountdownOver(false);
+            }}
+          >
+            Restart
+          </button>
+          <button
+            className="buttonStyled"
+            onClick={() => setGameStarted(false)}
+          >
+            Home
+          </button>
+        </div>
       ) : null}
     </div>
   );

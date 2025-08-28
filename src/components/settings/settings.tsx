@@ -9,14 +9,17 @@ export const Settings = ({
 }) => {
   return (
     <div className="settingsContainer">
-      <input
-        type="number"
-        placeholder="Number of winners"
+      <select
         className="numberOfWinnersInput"
-        onChange={(e) => setNumberOfWinners(Number(e.target.value))}
-        min={1}
-      />
-      <button className="button-styled" onClick={() => setGameStarted(true)}>
+        onChange={(e) => {
+          setNumberOfWinners(Number(e.target.value));
+        }}
+      >
+        {[...Array(5)]?.map((_, i) => (
+          <option key={i}>{i + 1}</option>
+        ))}
+      </select>
+      <button className="buttonStyled" onClick={() => setGameStarted(true)}>
         Start
       </button>
     </div>
