@@ -23,12 +23,13 @@ export const TouchArea: FC<{
   const timesUp = useCallback(() => {
     if (touches.size === 0) return;
 
-    const touchArray = Array.from(touches.values());
+    let touchArray = Array.from(touches.values());
     const selectedWinners: Point[] = [];
 
     while (selectedWinners.length < numberOfWinners) {
       const randomIndex = Math.floor(Math.random() * touchArray.length);
       const winner = touchArray[randomIndex];
+      touchArray = touchArray.filter((_, i) => i !== randomIndex);
 
       if (!selectedWinners.includes(winner)) {
         selectedWinners.push(winner);
@@ -85,6 +86,25 @@ export const TouchArea: FC<{
           </button>
         </div>
       ) : null}
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+          height: 30,
+          width: 30,
+          borderRadius: "50%",
+          border: "2px solid white",
+          position: "absolute",
+          top: 4,
+          right: 4,
+        }}
+        onClick={() => setGameStarted(false)}
+      >
+        &times;
+      </div>
     </div>
   );
 };
