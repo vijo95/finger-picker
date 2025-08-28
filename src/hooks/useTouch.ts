@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-interface Point {
+export interface Point {
   x: number;
   y: number;
   id: number;

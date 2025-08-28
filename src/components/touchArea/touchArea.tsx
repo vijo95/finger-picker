@@ -1,7 +1,7 @@
 import "./touchArea.css";
 import { useEffect, useRef, useState, type FC } from "react";
 import { TouchPoint } from "../touchPoint/touchPoint";
-import { useTouch } from "../../hooks/useTouch";
+import { useTouch, type Point } from "../../hooks/useTouch";
 import CountdownTimer from "../timer/timer";
 
 export const TouchArea: FC<{ numberOfWinners: number }> = ({
@@ -13,27 +13,49 @@ export const TouchArea: FC<{ numberOfWinners: number }> = ({
   const { touches } = useTouch({ wrapperRef });
   const [showTimer, setShowTimer] = useState<boolean>(false);
   const [countdownOver, setCountdownOver] = useState<boolean>(false);
+  const [winners, setWinners] = useState<Point[]>([]);
+
+  const timesUp = () => {
+    if (touches.size === 0) return;
+    const touchArray = Array.from(touches.values());
+    const selectedWinners: Point[] = [];
+    while (selectedWinners.length < numberOfWinners) {
+      const randomIndex = Math.floor(Math.random() * touchArray.length);
+      const winnerId = touchArray[randomIndex];
+      if (!selectedWinners.includes(winnerId)) {
+        selectedWinners.push(winnerId);
+      }
+    }
+    setWinners(selectedWinners);
+    setShowTimer(false);
+    setCountdownOver(true);
+  };
 
   useEffect(() => {
-    if (touches.size > numberOfWinners) {
+    if (numberOfWinners <= touches.size) {
       setShowTimer(true);
     } else {
       setShowTimer(false);
     }
-  }, [touches, numberOfWinners]);
-
-  console.log([...touches.entries()]);
+  }, [touches?.size, numberOfWinners]);
 
   return (
     <div ref={wrapperRef} className="container">
-      {[...touches.entries()].map(([id, point]) => (
-        <TouchPoint key={id} x={point.x} y={point.y} />
-      ))}
+      {winners?.length < 1
+        ? [...touches.entries()].map(([id, point]) => (
+            <TouchPoint key={id} x={point.x} y={point.y} isWinner={false} />
+          ))
+        : winners.map((point) => (
+            <TouchPoint
+              key={point.id}
+              x={point.x}
+              y={point.y}
+              isWinner={true}
+            />
+          ))}
+
       {showTimer && !countdownOver ? (
-        <CountdownTimer
-          initialSeconds={3}
-          onComplete={() => setCountdownOver(true)}
-        />
+        <CountdownTimer initialSeconds={3} onComplete={() => timesUp()} />
       ) : null}
     </div>
   );

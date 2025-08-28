@@ -24,6 +24,7 @@ const CountdownTimer: React.FC<CountdownProps> = ({
 
     return () => clearInterval(interval);
   }, [secondsLeft, onComplete]);
+  console.log(secondsLeft);
 
   return <div className="timer">{secondsLeft}</div>;
 };
