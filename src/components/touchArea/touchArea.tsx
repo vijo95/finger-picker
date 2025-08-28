@@ -101,6 +101,7 @@ export const TouchArea: FC<{
           position: "absolute",
           top: 4,
           right: 4,
+          userSelect: "none",
         }}
         onClick={() => {
           setNumberOfWinners(1);
