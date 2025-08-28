@@ -26,40 +26,13 @@
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 
   button {
-    font-size: 1.2rem;
+    font-size: 0.75rem;
+    width: 100px;
+    padding: 8px;
   }
-}
-
-.buttonStyled {
-  background: linear-gradient(135deg, #4f46e5, #3b82f6);
-  padding: 12px 24px;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 200px;
-}
-
-.buttonStyled:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-}
-
-.buttonStyled:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.buttonStyled:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
 }
 
 @keyframes countDown {
