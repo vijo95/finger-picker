@@ -9,6 +9,7 @@ export const Settings = ({
 }) => {
   return (
     <div className="settingsContainer">
+      <label className="numberOfWinnersLabel">Number of Winners</label>
       <select
         className="numberOfWinnersInput"
         onChange={(e) => {

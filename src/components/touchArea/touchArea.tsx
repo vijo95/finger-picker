@@ -64,7 +64,7 @@ export const TouchArea: FC<{
           ))}
 
       {showTimer && !countdownOver ? (
-        <CountdownTimer initialSeconds={3} onComplete={timesUp} />
+        <CountdownTimer initialSeconds={5} onComplete={timesUp} />
       ) : null}
       {countdownOver ? (
         <div className="restartContainer">

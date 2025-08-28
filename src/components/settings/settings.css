@@ -9,6 +9,14 @@
   gap: 20px;
 }
 
+.numberOfWinnersLabel {
+  font-size: 1rem;
+  color: whitesmoke;
+  width: 200px;
+  margin-bottom: -16px;
+  text-align: center;
+}
+
 .numberOfWinnersInput {
   padding: 12px 24px;
   border: none;
