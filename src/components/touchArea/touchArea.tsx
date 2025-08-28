@@ -1,5 +1,5 @@
 import "./touchArea.css";
-import { useEffect, useRef, useState, type FC } from "react";
+import { useCallback, useEffect, useRef, useState, type FC } from "react";
 import { TouchPoint } from "../touchPoint/touchPoint";
 import { useTouch, type Point } from "../../hooks/useTouch";
 import CountdownTimer from "../timer/timer";
@@ -15,21 +15,32 @@ export const TouchArea: FC<{ numberOfWinners: number }> = ({
   const [countdownOver, setCountdownOver] = useState<boolean>(false);
   const [winners, setWinners] = useState<Point[]>([]);
 
-  const timesUp = () => {
+  const timesUp = useCallback(() => {
     if (touches.size === 0) return;
+
     const touchArray = Array.from(touches.values());
     const selectedWinners: Point[] = [];
+
     while (selectedWinners.length < numberOfWinners) {
       const randomIndex = Math.floor(Math.random() * touchArray.length);
-      const winnerId = touchArray[randomIndex];
-      if (!selectedWinners.includes(winnerId)) {
-        selectedWinners.push(winnerId);
+      const winner = touchArray[randomIndex];
+
+      if (!selectedWinners.includes(winner)) {
+        selectedWinners.push(winner);
       }
     }
+
     setWinners(selectedWinners);
     setShowTimer(false);
     setCountdownOver(true);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    touches.size,
+    numberOfWinners,
+    setWinners,
+    setShowTimer,
+    setCountdownOver,
+  ]);
 
   useEffect(() => {
     if (numberOfWinners <= touches.size) {
@@ -55,7 +66,7 @@ export const TouchArea: FC<{ numberOfWinners: number }> = ({
           ))}
 
       {showTimer && !countdownOver ? (
-        <CountdownTimer initialSeconds={3} onComplete={() => timesUp()} />
+        <CountdownTimer initialSeconds={3} onComplete={timesUp} />
       ) : null}
     </div>
   );

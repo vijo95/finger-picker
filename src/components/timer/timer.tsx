@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import "./timer.css";
 
 interface CountdownProps {
@@ -24,9 +24,8 @@ const CountdownTimer: React.FC<CountdownProps> = ({
 
     return () => clearInterval(interval);
   }, [secondsLeft, onComplete]);
-  console.log(secondsLeft);
 
   return <div className="timer">{secondsLeft}</div>;
 };
 
-export default CountdownTimer;
+export default memo(CountdownTimer);
