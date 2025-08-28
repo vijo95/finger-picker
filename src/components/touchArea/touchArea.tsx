@@ -1,6 +1,6 @@
 import "./touchArea.css";
 import { useCallback, useEffect, useRef, useState, type FC } from "react";
-import { TouchPoint } from "../touchPoint/touchPoint";
+import { TouchPoint, WinnerTouchPoint } from "../touchPoint/touchPoint";
 import { useTouch, type Point } from "../../hooks/useTouch";
 import CountdownTimer from "../timer/timer";
 
@@ -53,15 +53,10 @@ export const TouchArea: FC<{
     <div ref={wrapperRef} className="container">
       {winners?.length < 1
         ? [...touches.entries()].map(([id, point]) => (
-            <TouchPoint key={id} x={point.x} y={point.y} isWinner={false} />
+            <TouchPoint key={id} x={point.x} y={point.y} />
           ))
         : winners.map((point) => (
-            <TouchPoint
-              key={point.id}
-              x={point.x}
-              y={point.y}
-              isWinner={true}
-            />
+            <WinnerTouchPoint key={point.id} x={point.x} y={point.y} />
           ))}
 
       {showTimer && !countdownOver ? (
