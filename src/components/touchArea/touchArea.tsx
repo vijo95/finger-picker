@@ -42,12 +42,6 @@ export const TouchArea: FC<{
     setWinners(selectedWinners);
     setShowTimer(false);
     setCountdownOver(true);
-
-    if (navigator.vibrate) {
-      navigator.vibrate(1000);
-    } else {
-      alert("Vibration not supported on this device");
-    }
   }, [touches, numberOfWinners, setWinners, setShowTimer, setCountdownOver]);
 
   useEffect(() => {
