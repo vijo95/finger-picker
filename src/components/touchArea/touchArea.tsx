@@ -42,6 +42,7 @@ export const TouchArea: FC<{
     setWinners(selectedWinners);
     setShowTimer(false);
     setCountdownOver(true);
+    navigator.vibrate(500);
   }, [touches, numberOfWinners, setWinners, setShowTimer, setCountdownOver]);
 
   useEffect(() => {
