@@ -11,11 +11,49 @@
   transform: translate(-50%, -50%) scale(0.75);
 }
 
+.circularProgressBar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.1s ease-in-out;
+}
+
+.progressCircle {
+  animation: progress 5s linear forwards;
+  stroke: #14cc98;
+}
+
+.progressCircleTrack {
+  animation: progress2 5s linear forwards;
+  stroke: #0d4233;
+}
+
 @keyframes pulse {
   from {
     transform: translate(-50%, -50%) scale(0.75);
   }
   to {
     transform: translate(-50%, -50%) scale(1.25);
+  }
+}
+
+@keyframes progress {
+  from {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  to {
+    stroke-dashoffset: 440;
+    opacity: 0;
+  }
+}
+
+@keyframes progress2 {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
 import "./timer.css";
+import CircleProgress from "./circularProgressBar";
 
 interface CountdownProps {
   initialSeconds: number;
@@ -27,7 +28,16 @@ const CountdownTimer: React.FC<CountdownProps> = ({
     }
   }, [secondsLeft, onComplete]);
 
-  return <div className="timer">{secondsLeft}</div>;
+  return (
+    <>
+      <div className="timer">{secondsLeft}</div>
+      <CircleProgress
+        percentage={(secondsLeft / initialSeconds) * 100}
+        size={150}
+        strokeWidth={10}
+      />
+    </>
+  );
 };
 
 export default memo(CountdownTimer);
