@@ -109,7 +109,7 @@ export const TouchArea: FC<{
         ? groups.map((group, i) => (
             <React.Fragment key={i}>
               {group?.map((g) => (
-                <GroupTouchPoint key={g.id} x={g.x} y={g.y} color={i} />
+                <GroupTouchPoint key={g.id} x={g.x} y={g.y} color={i + 1} />
               ))}
             </React.Fragment>
           ))
@@ -151,7 +151,7 @@ export const TouchArea: FC<{
       >
         &times;
       </div>
-      {touches?.size < numberOfWinnersOrGroups && !countdownOver ? (
+      {winners?.length < 1 && groups?.length < 1 && touches.size < 1 ? (
         <span className="fingerOn">Fingers on</span>
       ) : null}
     </div>
