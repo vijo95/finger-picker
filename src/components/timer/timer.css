@@ -2,13 +2,13 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  font-size: 7rem;
-  color: whitesmoke;
   user-select: none;
+  color: white;
 
   animation: pulse 0.5s infinite ease-in-out alternate;
 
-  transform: translate(-50%, -50%) scale(0.75);
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
 }
 
 .circularProgressBar {
@@ -31,10 +31,12 @@
 
 @keyframes pulse {
   from {
-    transform: translate(-50%, -50%) scale(0.75);
+    transform: translate(-50%, -50%);
+    font-size: 10rem;
   }
   to {
-    transform: translate(-50%, -50%) scale(1.25);
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
   }
 }
 

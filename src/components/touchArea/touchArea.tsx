@@ -7,15 +7,15 @@ import CountdownTimer from "../timer/timer";
 export const TouchArea: FC<{
   numberOfWinners: number;
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
-  setNumberOfWinners: React.Dispatch<React.SetStateAction<number>>;
+  setNumberOfWinnersOrGroups: React.Dispatch<React.SetStateAction<number>>;
 }> = ({
   numberOfWinners,
   setGameStarted,
-  setNumberOfWinners,
+  setNumberOfWinnersOrGroups,
 }: {
   numberOfWinners: number;
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
-  setNumberOfWinners: React.Dispatch<React.SetStateAction<number>>;
+  setNumberOfWinnersOrGroups: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { touches } = useTouch({ wrapperRef });
@@ -79,7 +79,7 @@ export const TouchArea: FC<{
           <button
             className="buttonStyled"
             onClick={() => {
-              setNumberOfWinners(1);
+              setNumberOfWinnersOrGroups(1);
               setGameStarted(false);
             }}
           >
@@ -104,7 +104,7 @@ export const TouchArea: FC<{
           userSelect: "none",
         }}
         onClick={() => {
-          setNumberOfWinners(1);
+          setNumberOfWinnersOrGroups(1);
           setGameStarted(false);
         }}
       >

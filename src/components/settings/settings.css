@@ -86,3 +86,68 @@
   outline: none;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
 }
+
+/* Container */
+.radio {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+  gap: 0.5rem;
+  position: relative;
+  margin-right: 1rem;
+  width: 200px;
+
+  user-select: none;
+}
+
+/* Hide native input */
+.radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: inherit;
+  height: 0;
+  width: 0;
+  user-select: none;
+}
+
+/* Custom circle */
+.radiomark {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6b7280; /* gray */
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.2s ease;
+  position: relative;
+  user-select: none;
+}
+
+/* Inner dot when checked */
+.radiomark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2563eb; /* blue */
+}
+
+/* Checked state */
+.radio input:checked ~ .radiomark {
+  border-color: #2563eb;
+}
+
+.radio input:checked ~ .radiomark::after {
+  display: block;
+}
+
+/* Focus ring */
+.radio input:focus-visible ~ .radiomark {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}

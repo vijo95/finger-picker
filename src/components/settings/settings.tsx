@@ -1,19 +1,48 @@
+import type { GameMode } from "../../App";
 import "./settings.css";
 
 export const Settings = ({
-  setNumberOfWinners,
+  gameMode,
   setGameStarted,
+  setGameMode,
+  setNumberOfWinnersOrGroups,
 }: {
-  setNumberOfWinners: React.Dispatch<React.SetStateAction<number>>;
+  gameMode: GameMode;
+  setGameMode: React.Dispatch<React.SetStateAction<GameMode>>;
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
+  setNumberOfWinnersOrGroups: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   return (
     <div className="settingsContainer">
-      <label className="numberOfWinnersLabel">Number of Winners</label>
+      <label className="radio">
+        <input
+          type="radio"
+          name="selection"
+          value="groups"
+          checked={gameMode === "groups"}
+          onChange={() => setGameMode("groups")}
+        />
+        <span className="radiomark" />
+        <span style={{ color: "white", userSelect: "none" }}>Groups</span>
+      </label>
+      <label className="radio">
+        <input
+          type="radio"
+          name="selection"
+          value="winners"
+          checked={gameMode === "winners"}
+          onChange={() => setGameMode("winners")}
+        />
+        <span className="radiomark" />
+        <span style={{ color: "white", userSelect: "none" }}>
+          Number of Winners
+        </span>
+      </label>
+
       <select
         className="numberOfWinnersInput"
         onChange={(e) => {
-          setNumberOfWinners(Number(e.target.value));
+          setNumberOfWinnersOrGroups(Number(e.target.value));
         }}
       >
         {[...Array(5)]?.map((_, i) => (
