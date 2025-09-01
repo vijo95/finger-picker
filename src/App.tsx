@@ -7,7 +7,7 @@ export type GameMode = "groups" | "winners";
 
 export default function App(): JSX.Element {
   const [gameMode, setGameMode] = useState<GameMode>("winners");
-  const [numberOfWinners, setNumberOfWinnersOrGroups] = useState(1);
+  const [numberOfWinnersOrGroups, setNumberOfWinnersOrGroups] = useState(1);
   const [gameStarted, setGameStarted] = useState(false);
   return (
     <>
@@ -20,7 +20,8 @@ export default function App(): JSX.Element {
         />
       ) : (
         <TouchArea
-          numberOfWinners={numberOfWinners}
+          gameMode={gameMode}
+          numberOfWinnersOrGroups={numberOfWinnersOrGroups}
           setGameStarted={setGameStarted}
           setNumberOfWinnersOrGroups={setNumberOfWinnersOrGroups}
         />

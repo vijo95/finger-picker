@@ -70,6 +70,8 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: 200px;
   user-select: none;
+
+  position: relative;
 }
 
 .buttonStyled:hover {
@@ -150,4 +152,9 @@
 .radio input:focus-visible ~ .radiomark {
   outline: 2px solid #93c5fd;
   outline-offset: 2px;
+}
+
+.playIcon {
+  width: 30px;
+  height: 30px;
 }

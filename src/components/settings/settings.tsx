@@ -1,5 +1,7 @@
 import type { GameMode } from "../../App";
 import "./settings.css";
+import groupIcon from "../../assets/icons8-group-96.png";
+import winnerIcon from "../../assets/icons8-podium-80.png";
 
 export const Settings = ({
   gameMode,
@@ -23,7 +25,19 @@ export const Settings = ({
           onChange={() => setGameMode("groups")}
         />
         <span className="radiomark" />
-        <span style={{ color: "white", userSelect: "none" }}>Groups</span>
+        <span
+          style={{
+            color: "white",
+            userSelect: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
+          }}
+        >
+          <span>Groups</span>
+          <img src={groupIcon} alt="play icon" className="playIcon" />
+        </span>
       </label>
       <label className="radio">
         <input
@@ -34,8 +48,18 @@ export const Settings = ({
           onChange={() => setGameMode("winners")}
         />
         <span className="radiomark" />
-        <span style={{ color: "white", userSelect: "none" }}>
-          Number of Winners
+        <span
+          style={{
+            color: "white",
+            userSelect: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 8,
+          }}
+        >
+          <span>Winners</span>
+          <img src={winnerIcon} alt="play icon" className="playIcon" />
         </span>
       </label>
 

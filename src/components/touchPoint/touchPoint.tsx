@@ -3,7 +3,7 @@ import "./touchPoint.css";
 export const TouchPoint = ({ x, y }: { x: number; y: number }) => {
   return (
     <div
-      className="touchPoint"
+      className="genericTouchPoint touchPoint"
       style={{
         left: x - 44,
         top: y - 44,
@@ -15,7 +15,27 @@ export const TouchPoint = ({ x, y }: { x: number; y: number }) => {
 export const WinnerTouchPoint = ({ x, y }: { x: number; y: number }) => {
   return (
     <div
-      className="winnerTouchPoint"
+      className="genericTouchPoint winnerTouchPoint"
+      style={{
+        left: x - 44,
+        top: y - 44,
+      }}
+    />
+  );
+};
+
+export const GroupTouchPoint = ({
+  x,
+  y,
+  color,
+}: {
+  x: number;
+  y: number;
+  color: number;
+}) => {
+  return (
+    <div
+      className={`genericTouchPoint touchPoint groupTouchPoint${color}`}
       style={{
         left: x - 44,
         top: y - 44,

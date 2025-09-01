@@ -1,19 +1,33 @@
 import "./touchArea.css";
-import { useCallback, useEffect, useRef, useState, type FC } from "react";
-import { TouchPoint, WinnerTouchPoint } from "../touchPoint/touchPoint";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type FC,
+} from "react";
+import {
+  GroupTouchPoint,
+  TouchPoint,
+  WinnerTouchPoint,
+} from "../touchPoint/touchPoint";
 import { useTouch, type Point } from "../../hooks/useTouch";
 import CountdownTimer from "../timer/timer";
+import type { GameMode } from "../../App";
 
 export const TouchArea: FC<{
-  numberOfWinners: number;
+  gameMode: GameMode;
+  numberOfWinnersOrGroups: number;
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
   setNumberOfWinnersOrGroups: React.Dispatch<React.SetStateAction<number>>;
 }> = ({
-  numberOfWinners,
+  gameMode,
+  numberOfWinnersOrGroups,
   setGameStarted,
   setNumberOfWinnersOrGroups,
 }: {
-  numberOfWinners: number;
+  gameMode: GameMode;
+  numberOfWinnersOrGroups: number;
   setGameStarted: React.Dispatch<React.SetStateAction<boolean>>;
   setNumberOfWinnersOrGroups: React.Dispatch<React.SetStateAction<number>>;
 }) => {
@@ -22,45 +36,88 @@ export const TouchArea: FC<{
   const [showTimer, setShowTimer] = useState<boolean>(false);
   const [countdownOver, setCountdownOver] = useState<boolean>(false);
   const [winners, setWinners] = useState<Point[]>([]);
+  const [groups, setGroups] = useState<Point[][]>([]);
+
+  console.log(gameMode);
 
   const timesUp = useCallback(() => {
     if (touches.size === 0) return;
 
     let touchArray = Array.from(touches.values());
-    const selectedWinners: Point[] = [];
-
-    while (selectedWinners.length < numberOfWinners) {
-      const randomIndex = Math.floor(Math.random() * touchArray.length);
-      const winner = touchArray[randomIndex];
-      touchArray = touchArray.filter((_, i) => i !== randomIndex);
-
-      if (!selectedWinners.includes(winner)) {
-        selectedWinners.push(winner);
+    if (gameMode === "groups") {
+      for (let i = touchArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [touchArray[i], touchArray[j]] = [touchArray[j], touchArray[i]];
       }
+
+      const groups: Point[][] = Array.from(
+        { length: numberOfWinnersOrGroups },
+        () => []
+      );
+
+      touchArray.forEach((touch, i) => {
+        const groupIndex = i % numberOfWinnersOrGroups;
+        groups[groupIndex].push(touch);
+      });
+      setGroups(groups);
+    }
+    if (gameMode === "winners") {
+      const selectedWinners: Point[] = [];
+      while (selectedWinners.length < numberOfWinnersOrGroups) {
+        const randomIndex = Math.floor(Math.random() * touchArray.length);
+        const winner = touchArray[randomIndex];
+        touchArray = touchArray.filter((_, i) => i !== randomIndex);
+
+        if (!selectedWinners.includes(winner)) {
+          selectedWinners.push(winner);
+        }
+      }
+      setWinners(selectedWinners);
     }
 
-    setWinners(selectedWinners);
     setShowTimer(false);
-    setCountdownOver(true);
-  }, [touches, numberOfWinners, setWinners, setShowTimer, setCountdownOver]);
+    setTimeout(() => {
+      setCountdownOver(true);
+    }, 2000);
+  }, [
+    touches,
+    numberOfWinnersOrGroups,
+    gameMode,
+    setGroups,
+    setWinners,
+    setShowTimer,
+    setCountdownOver,
+  ]);
 
   useEffect(() => {
-    if (numberOfWinners <= touches.size) {
+    if (numberOfWinnersOrGroups <= touches.size) {
       setShowTimer(true);
     } else {
       setShowTimer(false);
     }
-  }, [touches?.size, numberOfWinners]);
+  }, [touches?.size, numberOfWinnersOrGroups]);
+
+  console.log(groups);
 
   return (
     <div ref={wrapperRef} className="container">
-      {winners?.length < 1
+      {winners?.length < 1 && groups?.length < 1
         ? [...touches.entries()].map(([id, point]) => (
             <TouchPoint key={id} x={point.x} y={point.y} />
           ))
-        : winners.map((point) => (
+        : 1 <= winners?.length
+        ? winners.map((point) => (
             <WinnerTouchPoint key={point.id} x={point.x} y={point.y} />
-          ))}
+          ))
+        : 1 <= groups?.length
+        ? groups.map((group, i) => (
+            <React.Fragment key={i}>
+              {group?.map((g) => (
+                <GroupTouchPoint key={g.id} x={g.x} y={g.y} color={i} />
+              ))}
+            </React.Fragment>
+          ))
+        : null}
 
       {showTimer && !countdownOver ? (
         <CountdownTimer initialSeconds={5} onComplete={timesUp} />
@@ -71,6 +128,7 @@ export const TouchArea: FC<{
             className="buttonStyled"
             onClick={() => {
               setWinners([]);
+              setGroups([]);
               setCountdownOver(false);
             }}
           >
@@ -89,20 +147,7 @@ export const TouchArea: FC<{
       ) : null}
 
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-          height: 30,
-          width: 30,
-          borderRadius: "50%",
-          border: "2px solid white",
-          position: "absolute",
-          top: 4,
-          right: 4,
-          userSelect: "none",
-        }}
+        className="closedIcon"
         onClick={() => {
           setNumberOfWinnersOrGroups(1);
           setGameStarted(false);
@@ -110,6 +155,9 @@ export const TouchArea: FC<{
       >
         &times;
       </div>
+      {touches?.size < numberOfWinnersOrGroups && !countdownOver ? (
+        <span className="fingerOn">Fingers on</span>
+      ) : null}
     </div>
   );
 };
