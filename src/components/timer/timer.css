@@ -7,8 +7,8 @@
 
   animation: pulse 0.5s infinite ease-in-out alternate;
 
-  transform: translate(-50%, -50%);
-  font-size: 10rem;
+  transform: translate(-50%, -50%) scale(0.5);
+  font-size: 5rem;
 }
 
 .circularProgressBar {
@@ -31,12 +31,10 @@
 
 @keyframes pulse {
   from {
-    transform: translate(-50%, -50%);
-    font-size: 10rem;
+    transform: translate(-50%, -50%) scale(0.5);
   }
   to {
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
+    transform: translate(-50%, -50%) scale(1.5);
   }
 }
 
