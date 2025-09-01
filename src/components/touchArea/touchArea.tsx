@@ -38,8 +38,6 @@ export const TouchArea: FC<{
   const [winners, setWinners] = useState<Point[]>([]);
   const [groups, setGroups] = useState<Point[][]>([]);
 
-  console.log(gameMode);
-
   const timesUp = useCallback(() => {
     if (touches.size === 0) return;
 
@@ -96,8 +94,6 @@ export const TouchArea: FC<{
       setShowTimer(false);
     }
   }, [touches?.size, numberOfWinnersOrGroups]);
-
-  console.log(groups);
 
   return (
     <div ref={wrapperRef} className="container">
