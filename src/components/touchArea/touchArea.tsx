@@ -1,11 +1,5 @@
 import "./touchArea.css";
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type FC,
-} from "react";
+import React, { useCallback, useRef, useState, type FC } from "react";
 import {
   GroupTouchPoint,
   TouchPoint,
@@ -33,7 +27,6 @@ export const TouchArea: FC<{
 }) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { touches } = useTouch({ wrapperRef });
-  const [showTimer, setShowTimer] = useState<boolean>(false);
   const [countdownOver, setCountdownOver] = useState<boolean>(false);
   const [winners, setWinners] = useState<Point[]>([]);
   const [groups, setGroups] = useState<Point[][]>([]);
@@ -73,27 +66,15 @@ export const TouchArea: FC<{
       setWinners(selectedWinners);
     }
 
-    setShowTimer(false);
-    setTimeout(() => {
-      setCountdownOver(true);
-    }, 2000);
+    setCountdownOver(true);
   }, [
     touches,
     numberOfWinnersOrGroups,
     gameMode,
     setGroups,
     setWinners,
-    setShowTimer,
     setCountdownOver,
   ]);
-
-  useEffect(() => {
-    if (numberOfWinnersOrGroups <= touches.size) {
-      setShowTimer(true);
-    } else {
-      setShowTimer(false);
-    }
-  }, [touches?.size, numberOfWinnersOrGroups]);
 
   return (
     <div ref={wrapperRef} className="container">
@@ -115,7 +96,7 @@ export const TouchArea: FC<{
           ))
         : null}
 
-      {showTimer && !countdownOver ? (
+      {numberOfWinnersOrGroups <= touches.size && !countdownOver ? (
         <CountdownTimer initialSeconds={5} onComplete={timesUp} />
       ) : null}
       {countdownOver ? (

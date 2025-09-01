@@ -27,20 +27,14 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1.5s forwards;
+  user-select: none;
 
   button {
     font-size: 0.75rem;
     width: 100px;
     padding: 8px;
-  }
-}
-
-@keyframes countDown {
-  0% {
-    transform: translate(-50%, -50%) scale(0.85);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
   }
 }
 
@@ -75,4 +69,22 @@
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+}
+
+@keyframes countDown {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
