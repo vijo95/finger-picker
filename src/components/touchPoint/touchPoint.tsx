@@ -17,10 +17,10 @@ export const WinnerTouchPoint = ({ x, y }: { x: number; y: number }) => {
     <div
       className="genericTouchPoint winnerTouchPoint"
       style={{
-        left: x - 44,
-        top: y - 44,
+        left: x - 60,
+        top: y - 60,
       }}
-    />
+    ></div>
   );
 };
 
