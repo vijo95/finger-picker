@@ -11,23 +11,26 @@
 }
 
 .winnerTouchPoint {
-  animation: winnerTouch 0.3s ease-in-out infinite alternate;
+  animation: winnerTouch 0.2s ease-in-out infinite alternate;
 
   background-color: rgba(10, 133, 98, 1);
   transform: scale(0.5);
   border: 4px solid white;
+  box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 1);
 }
 
 @keyframes winnerTouch {
   from {
-    transform: scale(0.5);
+    transform: scale(0.75);
     background-color: rgba(10, 133, 98, 1);
     border: 4px solid white;
+    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 1);
   }
   to {
-    transform: scale(1.5);
+    transform: scale(1.25);
     background-color: rgba(10, 133, 98, 0.5);
     border: 4px dashed #00ff85;
+    box-shadow: 0px 0px 25px 10px rgba(255, 255, 255, 0.25);
   }
 }
 
