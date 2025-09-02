@@ -8,6 +8,7 @@ import {
 import { useTouch, type Point } from "../../hooks/useTouch";
 import CountdownTimer from "../timer/timer";
 import type { GameMode } from "../../App";
+import fingerTouch from "../../assets/icons8-touch-100.png";
 
 export const TouchArea: FC<{
   gameMode: GameMode;
@@ -133,7 +134,10 @@ export const TouchArea: FC<{
         &times;
       </div>
       {winners?.length < 1 && groups?.length < 1 && touches.size < 1 ? (
-        <span className="fingerOn">Fingers on</span>
+        <div className="fingersOn">
+          <span className="fingersOnText">Fingers on</span>
+          <img src={fingerTouch} alt="finger touch" />
+        </div>
       ) : null}
     </div>
   );

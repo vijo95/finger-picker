@@ -31,11 +31,7 @@ const CountdownTimer: React.FC<CountdownProps> = ({
   return (
     <>
       <div className="timer">{secondsLeft}</div>
-      <CircleProgress
-        percentage={(secondsLeft / initialSeconds) * 100}
-        size={150}
-        strokeWidth={10}
-      />
+      <CircleProgress size={100} strokeWidth={5} />
     </>
   );
 };

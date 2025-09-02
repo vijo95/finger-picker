@@ -8,7 +8,7 @@
   animation: pulse 0.5s infinite ease-in-out alternate;
 
   transform: translate(-50%, -50%) scale(0.5);
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 .circularProgressBar {
@@ -22,6 +22,7 @@
 .progressCircle {
   animation: progress 5s linear forwards;
   stroke: #14cc98;
+  stroke-dashoffset: 90;
 }
 
 .progressCircleTrack {
@@ -31,21 +32,21 @@
 
 @keyframes pulse {
   from {
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0.75);
   }
   to {
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.25);
   }
 }
 
 @keyframes progress {
   from {
-    stroke-dashoffset: 0;
     opacity: 1;
+    stroke-dashoffset: 90;
   }
   to {
-    stroke-dashoffset: 440;
     opacity: 0;
+    stroke-dashoffset: 300;
   }
 }
 
