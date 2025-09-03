@@ -79,6 +79,8 @@ export const TouchArea: FC<{
     setCountdownOver,
   ]);
 
+  console.log(numberOfWinnersOrGroups, players);
+
   return (
     <div ref={wrapperRef} className="container">
       {winners?.length < 1 && groups?.length < 1
@@ -91,7 +93,7 @@ export const TouchArea: FC<{
               key={point.id}
               x={point.x}
               y={point.y}
-              chances={numberOfWinnersOrGroups / players}
+              chances={(numberOfWinnersOrGroups / players) * 100}
             />
           ))
         : 1 <= groups?.length
