@@ -29,6 +29,7 @@ export const TouchArea: FC<{
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { touches } = useTouch({ wrapperRef });
   const [countdownOver, setCountdownOver] = useState<boolean>(false);
+  const [players, setPlayers] = useState<number>(1);
   const [winners, setWinners] = useState<Point[]>([]);
   const [groups, setGroups] = useState<Point[][]>([]);
 
@@ -64,6 +65,7 @@ export const TouchArea: FC<{
           selectedWinners.push(winner);
         }
       }
+      setPlayers(touches.size);
       setWinners(selectedWinners);
     }
 
@@ -85,7 +87,12 @@ export const TouchArea: FC<{
           ))
         : 1 <= winners?.length
         ? winners.map((point) => (
-            <WinnerTouchPoint key={point.id} x={point.x} y={point.y} />
+            <WinnerTouchPoint
+              key={point.id}
+              x={point.x}
+              y={point.y}
+              chances={numberOfWinnersOrGroups / players}
+            />
           ))
         : 1 <= groups?.length
         ? groups.map((group, i) => (

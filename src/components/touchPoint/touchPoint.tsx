@@ -12,7 +12,15 @@ export const TouchPoint = ({ x, y }: { x: number; y: number }) => {
   );
 };
 
-export const WinnerTouchPoint = ({ x, y }: { x: number; y: number }) => {
+export const WinnerTouchPoint = ({
+  x,
+  y,
+  chances,
+}: {
+  x: number;
+  y: number;
+  chances: number;
+}) => {
   return (
     <div
       className="genericTouchPoint winnerTouchPoint"
@@ -22,6 +30,16 @@ export const WinnerTouchPoint = ({ x, y }: { x: number; y: number }) => {
       }}
     >
       <div className="winnerTouchInner" />
+      <span
+        style={{
+          position: "absolute",
+          fontSize: "1.75rem",
+          color: "white",
+          fontWeight: "bold",
+        }}
+      >
+        {Math.round(chances)}%
+      </span>
     </div>
   );
 };
