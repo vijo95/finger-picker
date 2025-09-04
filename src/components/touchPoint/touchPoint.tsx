@@ -33,8 +33,8 @@ export const WinnerTouchPoint = ({
       <span
         style={{
           position: "absolute",
-          fontSize: "1rem",
-          color: "white",
+          fontSize: "0.75rem",
+          color: "rgb(12, 160, 120)",
         }}
       >
         {Math.round(chances)}%
